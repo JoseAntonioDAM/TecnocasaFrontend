@@ -1,10 +1,16 @@
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView } from "react-native";
 import { useState } from "react";
-import { useRoute } from "@react-navigation/native";
+import { useRoute, useNavigation } from "@react-navigation/native";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../navigation/RootNavigation";
+
+type NavProp = NativeStackNavigationProp<RootStackParamList>;
 
 export default function AgendaCitaScreen() {
     const route = useRoute();
+    const navigation = useNavigation<NavProp>();
+
     const { propiedad /* , usuario */ } = route.params as any;
 
     const [fecha, setFecha] = useState(new Date());
@@ -21,7 +27,8 @@ export default function AgendaCitaScreen() {
         };
 
         console.log("CITA ENVIADA:", payload);
-        alert("Cita confirmada");
+
+        navigation.navigate("Confirm"); 
     };
 
     return (
@@ -88,7 +95,7 @@ const styles = StyleSheet.create({
         height: "100%",
     },
     scrollContent: {
-        paddingTop: 180,   // igual que ClientHome
+        paddingTop: 180,
         paddingHorizontal: 20,
         paddingBottom: 40,
     },

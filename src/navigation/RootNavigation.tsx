@@ -5,12 +5,14 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ClientHomeScreen from "../screens/ClienteScreens/ClienteScreens";
 import PropertyDetailScreen from "../screens/ClienteScreens/PropertyDetailScreen";
 import AgendaCita from "../screens/ClienteScreens/AgendaCita";
+import ConfirmacionCita from "../screens/ClienteScreens/ConfirmacionCita";
 
 // Tipos de navegación SOLO para lo que usas ahora
 export type RootStackParamList = {
     ClientHome: undefined;
     PropertyDetail: { propiedad: any };
     AgendaCita: { propiedad: any /* , usuario: any */ };
+    Confirm: undefined;
 
 };
 
@@ -37,6 +39,12 @@ export default function RootNavigator() {
                     component={AgendaCita}
                     options={{ headerShown: false }}
                 />
+                <Stack.Screen
+                    name="Confirm"
+                    component={ConfirmacionCita}
+                    options={{ headerShown: false }}
+                />
+
 
 
             </Stack.Navigator>
