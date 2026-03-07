@@ -1,7 +1,8 @@
 import { View, Text, StyleSheet, TextInput, ScrollView, TouchableOpacity, Image, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
-import { obtenerPropiedades } from "../../api/propiedades.api";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../navigation/RootNavigation";
 
 type Propiedad = {
     id: number;
@@ -11,8 +12,10 @@ type Propiedad = {
     imagen_url: string;
 };
 
+type NavProp = NativeStackNavigationProp<RootStackParamList, "ClientHome">;
+
 export default function ClientHomeScreen() {
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavProp>();
 
     const [propiedades, setPropiedades] = useState<Propiedad[]>([]);
 
@@ -64,8 +67,7 @@ export default function ClientHomeScreen() {
                         <TouchableOpacity
                             key={item.id}
                             style={styles.card}
-                            onPress={() => console.log("Aquí irá el detalle")}
-
+                            onPress={() => navigation.navigate("PropertyDetail", { propiedad: item })}
                         >
                             <Image
                                 source={{ uri: item.imagen_url }}
@@ -85,6 +87,7 @@ export default function ClientHomeScreen() {
         </ImageBackground>
     );
 }
+
 const styles = StyleSheet.create({
     background: {
         flex: 1,
