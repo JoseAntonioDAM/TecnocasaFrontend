@@ -47,7 +47,9 @@ export default function PropertyDetailScreen() {
                     {/* Botón agendar */}
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={() => console.log("Aquí irá la pantalla de agendar cita")}
+                        onPress={() => navigation.navigate("AgendaCita", { propiedad /* , usuario */ })}
+
+
                     >
                         <Text style={styles.buttonText}>Agenda tu cita</Text>
                     </TouchableOpacity>
