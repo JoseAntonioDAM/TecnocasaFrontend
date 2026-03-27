@@ -63,12 +63,12 @@ const styles = StyleSheet.create({
     background: {
         flex: 1,
         width: "100%",
-        height: "100%",          // igual que en ClientHome
+        height: "75%",         
     },
     container: {
         flex: 1,
         paddingHorizontal: 20,
-        paddingTop: 175,         // igual concepto que en ClientHome (190 allí)
+        paddingTop: 175,        
     },
     scrollContent: {
         paddingBottom: 40,
