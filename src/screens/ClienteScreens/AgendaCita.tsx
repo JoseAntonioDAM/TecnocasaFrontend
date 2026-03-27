@@ -1,21 +1,19 @@
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView, TextInput } from "react-native";
 import { useState } from "react";
-import { useRoute, useNavigation } from "@react-navigation/native";
+import { RouteProp, useRoute, useNavigation } from "@react-navigation/native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../navigation/RootNavigation";
 
-type NavProp = NativeStackNavigationProp<RootStackParamList>;
+
+type AgendaCitaRouteProp = RouteProp<RootStackParamList, "AgendaCita">;
+type AgendaCitaNavProp = NativeStackNavigationProp<RootStackParamList, "AgendaCita">;
 
 export default function AgendaCitaScreen() {
-    const route = useRoute();
-<<<<<<< HEAD
-    const navigation = useNavigation<NavProp>();
+    const route = useRoute<AgendaCitaRouteProp>();
+    const navigation = useNavigation<AgendaCitaNavProp>();
 
-    const { propiedad /* , usuario */ } = route.params as any;
-=======
-    const { propiedad } = route.params as any;
->>>>>>> agendaCitaCliente
+    const { propiedad } = route.params;
 
     const [fecha, setFecha] = useState(new Date());
     const [hora, setHora] = useState(new Date());
@@ -33,16 +31,22 @@ export default function AgendaCitaScreen() {
         };
 
         console.log("CITA ENVIADA:", payload);
+        alert("Cita confirmada");
 
-        navigation.navigate("Confirm"); 
-    };
+        navigation.navigate("ConfirmacionCita", {
+            propiedad,
+            fecha,
+            hora,
+            motivo
+        });
+    };  
 
     return (
         <ImageBackground
             source={require("../../../assets/FondoClienteUno.png")}
             style={styles.background}
         >
-            <ScrollView 
+            <ScrollView
                 contentContainerStyle={styles.scrollContent}
                 keyboardShouldPersistTaps="handled"
             >
@@ -107,7 +111,7 @@ export default function AgendaCitaScreen() {
                 />
             )}
 
-      </ImageBackground>
+        </ImageBackground>
     );
 }
 

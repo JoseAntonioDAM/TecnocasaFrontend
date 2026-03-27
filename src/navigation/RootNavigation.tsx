@@ -12,7 +12,7 @@ export type RootStackParamList = {
     ClientHome: undefined;
     PropertyDetail: { propiedad: any };
     AgendaCita: { propiedad: any /* , usuario: any */ };
-    Confirm: undefined;
+    ConfirmacionCita: { propiedad: any; fecha: Date; hora: Date; motivo: string };
 
 };
 
@@ -40,7 +40,7 @@ export default function RootNavigator() {
                     options={{ headerShown: false }}
                 />
                 <Stack.Screen
-                    name="Confirm"
+                    name="ConfirmacionCita"
                     component={ConfirmacionCita}
                     options={{ headerShown: false }}
                 />
